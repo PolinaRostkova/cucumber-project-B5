@@ -4,13 +4,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.loop.pages.GoogleSearchPage;
+import io.loop.utilities.BrowserUtils;
 import io.loop.utilities.ConfigurationReader;
+import io.loop.utilities.DocuportConstants;
 import io.loop.utilities.Driver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -49,5 +52,35 @@ public class GoogleSearchStepDefs {
         Thread.sleep(3000);
         String actualTitle = Driver.getDriver().getTitle();
         assertEquals("Not matching", expectedTitle, actualTitle);
+    }
+//-------------------------------------------------------------------
+
+    @When("user search for {string}")
+    public void user_search_for(String country) {
+        googleSearchPage.searchBox.sendKeys("What is the capital of country: " + country + Keys.ENTER);
+
+    }
+    @Then("user should see the capital {string} in the results as capital")
+    public void user_should_see_the_capital_in_the_results_as_capital(String capital) {
+        String actualCapital = googleSearchPage.resulForCapital.getText();
+        assertEquals("Not matching", capital, actualCapital);
+    }
+    @Then("we love Loop Academy")
+    public void we_love_loop_academy() {
+        System.out.println("We love Loop Academy");
+    }
+
+    @Then("user search the following items")
+    public void user_search_the_following_items(List<String> items) {
+        for (String item : items) {
+            googleSearchPage.searchBox.clear();
+            googleSearchPage.searchBox.sendKeys(item + Keys.ENTER);
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(DocuportConstants.LARGE));
+            wait.until(ExpectedConditions.titleIs(item + " - Google Search"));
+            assertEquals("Not matching", item + " - Google Search", Driver.getDriver().getTitle());
+            BrowserUtils.takeScreenshot(BrowserUtils.myScenario);
+        }
+
+
     }
 }
