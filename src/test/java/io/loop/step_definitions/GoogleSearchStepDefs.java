@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -70,17 +71,39 @@ public class GoogleSearchStepDefs {
         System.out.println("We love Loop Academy");
     }
 
+//    @Then("user search the following items")
+//    public void user_search_the_following_items(List<String> items) {
+//        for (String item : items) {
+//            googleSearchPage.searchBox.clear();
+//            googleSearchPage.searchBox.sendKeys(item + Keys.ENTER);
+//            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(DocuportConstants.LARGE));
+//            wait.until(ExpectedConditions.titleIs(item + " - Google Search"));
+//            assertEquals("Not matching", item + " - Google Search", Driver.getDriver().getTitle());
+//            BrowserUtils.takeScreenshot(BrowserUtils.myScenario);
+//        }
+
+//        items.forEach(p->{
+//            googleSearchPage.searchBox.clear();
+//            googleSearchPage.searchBox.sendKeys(p + Keys.ENTER);
+//            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(DocuportConstants.LARGE));
+//            wait.until(ExpectedConditions.titleIs(p + " - Google Search"));
+//            assertEquals("Not matching", p + " - Google Search", Driver.getDriver().getTitle());
+//            BrowserUtils.takeScreenshot(BrowserUtils.myScenario);
+//        });
+
+
+    //}
+
     @Then("user search the following items")
-    public void user_search_the_following_items(List<String> items) {
-        for (String item : items) {
+    public void user_search_the_following_items(List<Map<String, String>> items) {
+        for (Map<String, String> each : items){
+            System.out.println("Items found: " + each);
             googleSearchPage.searchBox.clear();
-            googleSearchPage.searchBox.sendKeys(item + Keys.ENTER);
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(DocuportConstants.LARGE));
-            wait.until(ExpectedConditions.titleIs(item + " - Google Search"));
-            assertEquals("Not matching", item + " - Google Search", Driver.getDriver().getTitle());
+            googleSearchPage.searchBox.sendKeys(each.get("items") + Keys.ENTER);
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.titleIs(each.get("items") + " - Google Search"));
+            assertEquals("Expected does not match the actual", each.get("items") + " - Google Search", Driver.getDriver().getTitle());
             BrowserUtils.takeScreenshot(BrowserUtils.myScenario);
         }
-
-
     }
 }
