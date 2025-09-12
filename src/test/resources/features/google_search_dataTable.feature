@@ -4,13 +4,13 @@ Feature: passing multiple information to the same step
   Scenario: Searching Multiple Items
     Given user is on Google page
     Then user search the following items
-      | loop academy         |
-      | java                 |
-      | selenium             |
-      | sql                  |
-      | taras                |
-      | suidum               |
-      | savlat               |
-      | polina               |
-      | we love loop academy |
+      | items        |
+      | loop academy |
+      | java         |
+      | selenium     |
+      | sql          |
+      | taras        |
+      | suidum       |
+      | savlat       |
+      | polina       |
     And we love Loop Academy
