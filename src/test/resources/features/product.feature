@@ -34,5 +34,34 @@ Feature: Product data table practice
 
 
   # practice List<List<String>>
-  # practice Map<String, List<String>>
+  @list_of_lists
+
+  Scenario: verify each product price List of List
+    Given User is on the HomePage
+    Then User should be able to see expected prices in the following products with listOfLists
+      | Phones   | Samsung galaxy s6 | 360 |
+      | Phones   | Nokia lumia 1520  | 820 |
+      | Phones   | Nexus 6           | 650 |
+      | Laptops  | Sony vaio i5      | 790 |
+      | Laptops  | Sony vaio i7      | 790 |
+      | Laptops  | MacBook air       | 700 |
+      | Monitors | Apple monitor 24  | 400 |
+      | Monitors | ASUS Full HD      | 230 |
+
+  @map
+# practice Map<String, List<String>>
+  Scenario: verify student names
+    Then user should be able to see the names
+      | Group 2 | Nadir | Feyruz | Jane   |
+      | Group 3 | Vika  | Suidum | Savlat |
+
+
+  @mapOfList
+  Scenario: verify each product price map
+    Given User is on the HomePage
+    Then User should be able to see expected prices in the following products with map
+
+      | Phones   | Samsung galaxy s6-360 | Nokia lumia 1520-820 | Nexus 6-650     |
+      | Laptops  | Sony vaio i5-790      | Sony vaio i7-790     | MacBook air-700 |
+      | Monitors | Apple monitor 24-400  | ASUS Full HD-230     |                 |
 
