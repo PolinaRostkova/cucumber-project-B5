@@ -7,6 +7,8 @@ import io.loop.utilities.ConfigurationReader;
 import io.loop.utilities.DocuportConstants;
 import io.loop.utilities.Driver;
 
+import java.util.Map;
+
 import static org.junit.Assert.assertTrue;
 
 public class LoginStepDefs {
@@ -91,5 +93,15 @@ LoginPageDocuport loginPageDocuport =  new LoginPageDocuport();
 
     }
 
+    @When("user enters credentials")
+    public void user_enters_credentials(Map<String, String> credentials) throws InterruptedException {
+//        for(Map.Entry<String, String> entry : credentials.entrySet()){
+//            String key = entry.getKey();
+//            System.out.println(key);
+//            String value = entry.getValue();
+//            System.out.println(value);
+//        }
+        loginPageDocuport.docuportLogin(credentials.get("username"), credentials.get("password"));
+    }
 
 }

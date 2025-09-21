@@ -1,6 +1,6 @@
 Feature: Product data table practice
 
-  @products
+  @products @smoke
   Scenario: verify each product price
   # practice List<Map<String, String>>
     Given User is on the HomePage
@@ -34,7 +34,7 @@ Feature: Product data table practice
 
 
   # practice List<List<String>>
-  @list_of_lists
+  @list_of_lists @smoke
 
   Scenario: verify each product price List of List
     Given User is on the HomePage
@@ -48,7 +48,7 @@ Feature: Product data table practice
       | Monitors | Apple monitor 24  | 400 |
       | Monitors | ASUS Full HD      | 230 |
 
-  @map
+  @map @smoke
 # practice Map<String, List<String>>
   Scenario: verify student names
     Then user should be able to see the names
@@ -56,7 +56,7 @@ Feature: Product data table practice
       | Group 3 | Vika  | Suidum | Savlat |
 
 
-  @mapOfList
+  @mapOfList @smoke
   Scenario: verify each product price map
     Given User is on the HomePage
     Then User should be able to see expected prices in the following products with map
