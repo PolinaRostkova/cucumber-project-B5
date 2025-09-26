@@ -2,7 +2,7 @@ Feature: Docuport login and logout feature
   Background: this is for navigating to Docuport page
     Given user is on Docuport login page
 
-
+  @tag
   Scenario: Login as a client
     #Given user is on Docuport login page
     When user enters username for client

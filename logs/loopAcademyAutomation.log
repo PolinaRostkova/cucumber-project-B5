@@ -1,9 +1,1 @@
-21.09.2025 14:07:32 INFO  ProductStepDefs:24 - User is on home page
-21.09.2025 14:07:32 INFO  ProductStepDefs:93 - Expected price = 360, actual price = 360
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 820, actual price = 820
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 650, actual price = 650
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 790, actual price = 790
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 790, actual price = 790
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 700, actual price = 700
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 400, actual price = 400
-21.09.2025 14:07:33 INFO  ProductStepDefs:93 - Expected price = 230, actual price = 230
+25.09.2025 21:48:25 ERROR ExcelUtils:34 - /Users/Polina/Desktop/Book1.xlsx (No such file or directory): happened while accessing the excel file
