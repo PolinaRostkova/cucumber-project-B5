@@ -48,7 +48,7 @@ public class GoogleSearchStepDefs {
     @Then("user should be able to see {string} in the google title")
     public void user_should_be_able_to_see_in_the_google_title(String expectedTitle) throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
-//        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+//        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(DocuportConstants.LARGE));
 //        wait.until(ExpectedConditions.titleIs(expectedTitle));
         Thread.sleep(3000);
         String actualTitle = Driver.getDriver().getTitle();
@@ -100,7 +100,7 @@ public class GoogleSearchStepDefs {
             System.out.println("Items found: " + each);
             googleSearchPage.searchBox.clear();
             googleSearchPage.searchBox.sendKeys(each.get("items") + Keys.ENTER);
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(DocuportConstants.LARGE));
             wait.until(ExpectedConditions.titleIs(each.get("items") + " - Google Search"));
             assertEquals("Expected does not match the actual", each.get("items") + " - Google Search", Driver.getDriver().getTitle());
             BrowserUtils.takeScreenshot(BrowserUtils.myScenario);
