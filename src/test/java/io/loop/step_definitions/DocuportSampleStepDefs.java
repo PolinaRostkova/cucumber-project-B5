@@ -1,0 +1,99 @@
+package io.loop.step_definitions;
+
+import io.cucumber.core.logging.LoggerFactory;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.loop.pages.POM;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.bson.assertions.Assertions;
+import org.junit.Assert;
+
+public class DocuportSampleStepDefs {
+
+    private static final Logger LOGGER = LogManager.getLogger(DocuportSampleStepDefs.class);
+    POM pages = new POM();
+
+    @When("user inserts {string} to {string} field on {string} page")
+    public void user_inserts_to_field_on_page(String input, String field, String page) {
+
+        switch (page.toLowerCase().trim()) {
+            case "login" -> {
+                    pages.getLoginPage().insertField(field, input);
+                    LOGGER.info(input + " was sent to the " + field);
+            }
+            case "received doc" -> {
+                pages.getReceivedDocsPage().insertField(field, input);
+                LOGGER.info(input + " was sent to the " + field);
+            }
+            case "invitations" -> {
+                pages.getInvitationsPage().insertField(input, field);
+                LOGGER.info(input + " was sent to the " + field);
+            }
+            default -> throw new IllegalArgumentException("No such a page: " + page);
+        }
+
+    }
+
+    @When("user clicks {string} button on {string} page")
+    public void user_clicks_button_on_page(String button, String page) throws InterruptedException {
+        switch (page.toLowerCase().trim()) {
+            case "login", "choose account" -> {
+                pages.getLoginPage().clickButton(button);
+                LOGGER.info(button + " button was clicked on the " +  page + "page");
+            }
+            case "left navigate" -> {
+                Thread.sleep(3000);
+                pages.getLeftNavigatePage().clickButton(button);
+                LOGGER.info(button + " button was clicked on the " +  page + "page");
+            }
+            case "received doc" -> {
+                pages.getReceivedDocsPage().clickButton(button);
+                LOGGER.info(button + " button was clicked on the " +  page + "page");
+            }
+            case "my uploads" -> {
+                pages.getMyUploadsPage().clickButton(button);
+                LOGGER.info(button + " button was clicked on the " + page + "page");
+            }
+            case "invitations" -> {
+                pages.getInvitationsPage().clickButton(button);
+                LOGGER.info(button + " button was clicked on the " + page + "page");
+            }
+            default -> throw new IllegalArgumentException("No such a page: " + page);
+        }
+    }
+
+    @When("user clicks {string} option on {string} dropdown")
+    public void user_clicks_option_on_dropdown(String dropDownOption, String dropDown) {
+       switch (dropDown.toLowerCase().trim()) {
+           case "tags" -> {
+               pages.getReceivedDocsPage().clickDropdownOption(dropDownOption);
+               LOGGER .info(dropDownOption + " was clicked on the " + dropDown);
+           }
+           case "upload date" -> {
+               pages.getReceivedDocsPage().clickDate(dropDownOption);
+               LOGGER.info(dropDownOption + " was clicked on the " + dropDown);
+           }
+           case "uploaded by" -> {
+               pages.getReceivedDocsPage().clickDropdownOption(dropDownOption);
+               LOGGER.info(dropDownOption + " was clicked on the " + dropDown);
+           }
+           default -> throw new IllegalArgumentException("No such a dropdown: " + dropDown);
+       }
+    }
+    @Then("user should see message {string} on {string} page")
+    public void user_should_see_message_on_page(String massage, String page) {
+       switch (page.toLowerCase().trim()) {
+           case "received doc" -> {
+               Assert.assertEquals(massage, pages.getReceivedDocsPage().getSearchMassage());
+               LOGGER.info("Got " + massage + " massage displayed after Search");
+           }
+           case "invitations" -> {
+               Assert.assertEquals(massage, pages.getInvitationsPage().getSearchMassage());
+               LOGGER.info("Got " + massage + " massage displayed after Search");
+           }
+           default -> throw new IllegalArgumentException("No such a page: " + page);
+       }
+    }
+
+}

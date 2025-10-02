@@ -1,1 +1,4 @@
-25.09.2025 21:48:25 ERROR ExcelUtils:34 - /Users/Polina/Desktop/Book1.xlsx (No such file or directory): happened while accessing the excel file
+02.10.2025 17:54:34 INFO  DocuportSampleStepDefs:31 - loop was sent to the Recipient
+02.10.2025 17:54:34 INFO  DocuportSampleStepDefs:60 - Sent button was clicked on the Invitationspage
+02.10.2025 17:54:35 INFO  DocuportSampleStepDefs:60 - Search submit button was clicked on the Invitationspage
+02.10.2025 17:54:35 INFO  DocuportSampleStepDefs:93 - Got Your search returned no results. Make sure you search properly massage displayed after Search
