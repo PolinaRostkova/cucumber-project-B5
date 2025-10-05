@@ -28,7 +28,7 @@ public class LeftNavigatePage {
     @FindBy(xpath = "//span[contains(text(),'Invitations')]")
     public WebElement invitationsButton;
 
-    @FindBy(xpath = "//a[contains(text(),'Terms')]")
+    @FindBy(xpath = "//a[.=' Terms and conditions ']")
     public WebElement termsAndConditionsButton;
 
     public void clickButton(String buttonText) {

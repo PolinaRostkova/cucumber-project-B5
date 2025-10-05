@@ -1,5 +1,6 @@
-Feature: Received Docs filters with no matching results
 
+@B5G3-149
+Feature: Received Docs filters with no matching results
 
   Background:
     Given user is on Docuport login page
@@ -9,7 +10,7 @@ Feature: Received Docs filters with no matching results
     And user clicks "continue" button on "Choose account" page
     And user clicks "Received Doc" button on "Left Navigate" page
     And user clicks "Search" button on "Received doc" page
-  @receivedPageSearch
+  @receivedPageSearch @B5G3-151
   Scenario: Tag + Upload date + Uploaded by yields no results
     And user clicks "Tags" button on "Received doc" page
     And user clicks "Other documents" option on "Tags" dropdown

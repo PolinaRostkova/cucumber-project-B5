@@ -1,5 +1,5 @@
+@B5G3-149
 Feature: My invitations — recipient search with no results
-
 
   Background:
     Given user is on Docuport login page
@@ -10,7 +10,7 @@ Feature: My invitations — recipient search with no results
     And user clicks "Invitations" button on "Left Navigate" page
     And user clicks "Search" button on "Invitations" page
 
-    @myInvitations
+    @myInvitations @B5G3-153
   Scenario: Recipient = "loop" with Sent filter returns no results
     When user inserts "loop" to "Recipient" field on "Invitations" page
     And user clicks "Sent" button on "Invitations" page
