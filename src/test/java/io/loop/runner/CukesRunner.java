@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "io/loop/step_definitions",
         dryRun = false,
-        tags = "@termsConditions",
+        tags = "@soft",
         monochrome = true,
         publish = false
 )

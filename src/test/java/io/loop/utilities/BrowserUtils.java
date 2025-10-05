@@ -2,6 +2,7 @@ package io.loop.utilities;
 
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,6 +10,9 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertTrue;
 
@@ -97,7 +101,11 @@ public class BrowserUtils {
 
     public static WebElement waitForClickable(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+       try {
+           return wait.until(ExpectedConditions.elementToBeClickable(element));
+       }catch (StaleElementReferenceException e){
+           return wait.until(ExpectedConditions.elementToBeClickable(element));
+       }
     }
 
 
@@ -300,4 +308,82 @@ public class BrowserUtils {
                 if (upper) robot.keyRelease(KeyEvent.VK_SHIFT);
         }
     }
+
+    /**
+     * Moves the mouse ti given element
+     * @param element to hover over
+     */
+
+    public static void hover(WebElement element){
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element).perform();
+    }
+
+    /**
+     * Scrolls down to the element using Javascript
+     * @param element
+     */
+
+    public static void scrollToElement(WebElement element, Actions actions){
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    /**
+     * Clicks on element with Javascript
+     * @param element
+     */
+
+    public static void clickWithJS(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        try {
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+            js.executeScript("arguments[0].click();", element);
+        }catch (StaleElementReferenceException e){
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+    /**
+     * performs double click action
+     * @param element
+     */
+
+    public static void doubleClick(WebElement element){
+        new Actions(Driver.getDriver()).moveToElement(element).doubleClick().perform();
+    }
+
+    /**
+     * perform a pause
+     * @param milliSeconds
+     */
+
+    public static void justWait(int milliSeconds){
+        try {
+            Thread.sleep(milliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<String> getElementsTest(List<WebElement> elements){
+        List<String> list = new ArrayList<>();
+        for (WebElement element : elements) {
+            list.add(element.getText());
+        }
+        return list;
+    }
+
+    public static List<String> getElementsTextWithStream(List<WebElement> elements){
+        return elements.stream()
+                .map(x->x.getText())
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> getElementsTextWithStream2(List<WebElement> elements){
+        return elements.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
 }
