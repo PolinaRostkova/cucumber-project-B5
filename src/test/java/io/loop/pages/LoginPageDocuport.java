@@ -27,9 +27,19 @@ public class LoginPageDocuport {
     @FindBy(xpath = "//button[@class='text-none body-2 font-weight-medium v-btn v-btn--has-bg theme--light v-size--default success']")
     public WebElement contButton;
 
+    @FindBy(xpath = "//h1[.=' Login ']")
+    private WebElement loginText;
+
 
     @FindBy(xpath = "//img[@alt='Docuport']")
     public WebElement docuportImage;
+
+    public String getLoginText() {
+        return loginText.getText();
+    }
+
+    @FindBy(xpath = "//h3[.='Choose account']")
+    public WebElement chooseAccountText;
 
     public void clickButton(String button) {
         switch (button.toLowerCase().trim()) {

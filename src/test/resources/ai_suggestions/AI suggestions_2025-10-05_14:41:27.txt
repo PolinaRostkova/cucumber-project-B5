@@ -1,0 +1,33 @@
+Scenario: Search for a recipe on www.google.com
+Given I am on the Google homepage
+When I type "chocolate chip cookie recipe" into the search bar
+And click on the Search button
+Then I should see search results related to chocolate chip cookie recipes
+
+Scenario: Search for a restaurant on www.google.com
+Given I am on the Google homepage
+When I type "best sushi restaurant near me" into the search bar
+And click on the Search button
+Then I should see search results related to sushi restaurants near my location
+
+Scenario: Search for a movie on www.google.com
+Given I am on the Google homepage
+When I type "Avengers: Endgame showtimes" into the search bar
+And click on the Search button
+Then I should see search results related to movie showtimes for Avengers: Endgame
+
+Scenario: Search for a product on www.google.com
+Given I am on the Google homepage
+When I type "iPhone 12 Pro Max" into the search bar
+And click on the Search button
+Then I should see search results related to the iPhone 12 Pro Max
+
+Negative Scenario: Incorrect search term
+Given I am on the Google homepage
+When I type a random string of characters into the search bar
+And click on the Search button
+Then I should see an error message indicating that the search term is invalid
+
+Negative Scenario: No search results found
+Given I am on the Google homepage
+When I type "unicorn tears" into the
