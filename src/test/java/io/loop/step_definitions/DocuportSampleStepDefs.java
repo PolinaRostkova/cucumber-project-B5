@@ -4,10 +4,17 @@ import io.cucumber.core.logging.LoggerFactory;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.loop.pages.POM;
+import io.loop.utilities.BrowserUtils;
+import io.loop.utilities.Driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bson.assertions.Assertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DocuportSampleStepDefs {
 
@@ -40,24 +47,24 @@ public class DocuportSampleStepDefs {
         switch (page.toLowerCase().trim()) {
             case "login", "choose account" -> {
                 pages.getLoginPage().clickButton(button);
-                LOGGER.info(button + " button was clicked on the " +  page + "page");
+                LOGGER.info(button + " button was clicked on the " +  page + " page");
             }
             case "left navigate" -> {
                 Thread.sleep(3000);
                 pages.getLeftNavigatePage().clickButton(button);
-                LOGGER.info(button + " button was clicked on the " +  page + "page");
+                LOGGER.info(button + " button was clicked on the " +  page + " page");
             }
             case "received doc" -> {
                 pages.getReceivedDocsPage().clickButton(button);
-                LOGGER.info(button + " button was clicked on the " +  page + "page");
+                LOGGER.info(button + " button was clicked on the " +  page + " page");
             }
             case "my uploads" -> {
                 pages.getMyUploadsPage().clickButton(button);
-                LOGGER.info(button + " button was clicked on the " + page + "page");
+                LOGGER.info(button + " button was clicked on the " + page + " page");
             }
             case "invitations" -> {
                 pages.getInvitationsPage().clickButton(button);
-                LOGGER.info(button + " button was clicked on the " + page + "page");
+                LOGGER.info(button + " button was clicked on the " + page + " page");
             }
             default -> throw new IllegalArgumentException("No such a page: " + page);
         }
@@ -94,6 +101,20 @@ public class DocuportSampleStepDefs {
            }
            default -> throw new IllegalArgumentException("No such a page: " + page);
        }
+    }
+
+    @Then("user uploads a document")
+    public void user_uploads_a_document() throws Exception {
+//        WebElement element = Driver.getDriver().findElement(By.xpath("//input[@type='file']"));
+//        element.sendKeys("/Users/Polina/Desktop/untitled.txt");
+       // BrowserUtils.uploadFileMac("/Users/Polina/Desktop/untitled.txt");
+        //BrowserUtils.uploadFileUsingAppleScript("/Users/Polina/Desktop/untitled.txt");
+        BrowserUtils.uploadFileMac2("/Users/Polina/Desktop/untitled.txt");
+    }
+
+    @Then("a new tab should open with heading {string}")
+    public void a_new_tab_should_open_with_heading(String termsAndConditionsHeading) {
+       BrowserUtils.switchWindowAndValidate(Driver.getDriver(), "https://numbersquad.com/service-terms-and-conditions", termsAndConditionsHeading);
     }
 
 }

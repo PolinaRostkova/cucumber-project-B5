@@ -22,10 +22,14 @@ public class MyUploadsPage {
     @FindBy(xpath = "//span[.='Upload file' and @class='subtitle-2 text-none']")
     private WebElement uploadFileButton;
 
+    @FindBy(xpath = "//span[contains(text(),' Upload ')]")
+    private WebElement uploadButton;
+
     public void clickButton(String button) {
         switch (button.toLowerCase().trim()) {
             case "upload documents" -> BrowserUtils.waitForClickable(uploadDocumentsButton, DocuportConstants.LARGE).click();
             case "cancel" -> BrowserUtils.waitForClickable(cancelButton, DocuportConstants.LARGE).click();
+            case "upload file" -> BrowserUtils.waitForClickable(uploadFileButton, DocuportConstants.LARGE).click();
             default -> throw new IllegalArgumentException("Button " + button + " not found");
         }
     }

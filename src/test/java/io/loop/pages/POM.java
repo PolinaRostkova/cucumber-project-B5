@@ -9,6 +9,7 @@ public class POM {
     private LeftNavigatePage leftNavigatePage;
     private MyUploadsPage myUploads;
     private InvitationsPage invitations;
+    private TernsAndConditionsPage ternsAndConditionsPage;
 
 
     public LoginPageDocuport getLoginPage() {
@@ -58,5 +59,12 @@ public class POM {
             invitations = new InvitationsPage();
         }
         return invitations;
+    }
+
+    public TernsAndConditionsPage getTernsAndConditionsPage() {
+        if (ternsAndConditionsPage == null){
+            ternsAndConditionsPage = new TernsAndConditionsPage();
+        }
+        return ternsAndConditionsPage;
     }
 }
